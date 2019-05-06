@@ -1,3 +1,4 @@
+
 /*
  * LCD:
  * RS->7
@@ -120,7 +121,7 @@ void timeScreen() {              // function to display Date and time in LCD scr
     lcd.print("/");
     lcd.print(now.year(), DEC);
 }
-
+int toNodeMcu =11;
 void setup() {
 
   Serial.begin(9600);                      // start serial debugging
@@ -147,6 +148,7 @@ void setup() {
   pinMode(push3pin, INPUT);
   pinMode(stopPin, INPUT);
   pinMode(ledPin, OUTPUT);
+  pinMode(toNodeMcu,OUTPUT);
   delay(200);
   Serial.println(EEPROM.read(addr));
   val2 = EEPROM.read(addr);                         // read previosuly saved value of push button to start from where it was left previously
@@ -290,18 +292,19 @@ void startBuzz() {                    // function to start buzzing when time rea
       Serial.println("Start Buzzing");
       if (ledState == LOW) {                  // if the LED is off turn it on and vice-versa:
         ledState = HIGH;
-      }  else {
-        ledState = LOW;
-      }
+      } 
+      
       digitalWrite(ledPin, ledState);
-       digitalWrite(buzz, ledState);
+      digitalWrite(toNodeMcu, ledState);
+       
     }
   }
   else if (pushpressed == 1) {
     Serial.println("pushpressed is true");
     ledState = LOW;
     digitalWrite(ledPin, ledState);
-     digitalWrite(buzz, ledState);
+    digitalWrite(toNodeMcu, ledState);
+    
   }
 }
 
@@ -381,3 +384,5 @@ void changeScreen() {                 //function for Screen Cycling
     }
   }
 }
+
+
