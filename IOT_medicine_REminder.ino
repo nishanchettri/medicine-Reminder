@@ -4,10 +4,9 @@
 
 
 int inPin=0;//d3
-int outPin=2;//d4
 /************************* WiFi Access Point *********************************/
 
-#define WLAN_SSID       "nissan"
+#define WLAN_SSID       "abcd"
 #define WLAN_PASS       "password"
 
 /************************* Adafruit.io Setup *********************************/
